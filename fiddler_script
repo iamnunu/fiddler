@@ -163,9 +163,11 @@ class Handlers
         var n =  DateTime.Now.ToString("yyyy-mm-dd.hh.MM.ss.ms.ffffff");
 
         //oSession.SaveRequestBody(path2 + "_request.txt");
+        
+        if(oMsg.PayloadAsString().indexOf("Presence")>-1){
        
-        if(oMsg.IsOutbound)
-        {
+            if(oMsg.IsOutbound )
+            {
             
            
                 System.IO.File.WriteAllText("C:\\aos\\" + n+ mySession.id.ToString() + " .txt",
@@ -173,18 +175,19 @@ class Handlers
                 //mySession.SaveResponseBody(path2+ "_response.txt");
                 FiddlerApplication.Log.LogString("OUT\r\n" + oMsg.PayloadAsString());
               
-        }
-        else
-        {   
+            }
+            else
+            {   
             
                 System.IO.File.WriteAllText("C:\\aos\\" +n+ mySession.id.ToString() + " .txt",
                     oMsg.PayloadAsString());
-               //mySession.SaveResponseBody(path2+ "_response.txt"); 
-               FiddlerApplication.Log.LogString("IN\r\n" + oMsg.PayloadAsString());
+                //mySession.SaveResponseBody(path2+ "_response.txt"); 
+                FiddlerApplication.Log.LogString("IN\r\n" + oMsg.PayloadAsString());
             
            
            
            
+            }
         }
     }
 
